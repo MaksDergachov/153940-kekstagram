@@ -107,26 +107,16 @@
       // Отрисовка прямоугольника, обозначающего область изображения после
       // кадрирования. Координаты задаются от центра.
       this._ctx.fillStyle = '#ffe753';
-      this._ctx.beginPath();
       for (var i = 0; i < this._resizeConstraint.side / 14; i++) {
+        this._ctx.beginPath();
         this._ctx.arc((-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2 + i * 14, (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2, 3, 0, Math.PI * 2, true);
+        this._ctx.arc(this._resizeConstraint.side / 2 - this._ctx.lineWidth, (this._resizeConstraint.side / 2) - this._ctx.lineWidth - i * 14, 3, 0, Math.PI * 2, true);
+        this._ctx.fill();
+        this._ctx.beginPath();
+        this._ctx.arc((-this._resizeConstraint.side / 2) - this._ctx.lineWidth + i * 14, (this._resizeConstraint.side / 2) - this._ctx.lineWidth, 3, 0, Math.PI * 2, true);
+        this._ctx.arc((-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2, (this._resizeConstraint.side / 2) - this._ctx.lineWidth - i * 14, 3, 0, Math.PI * 2, true);
+        this._ctx.fill();
       }
-      this._ctx.fill();
-      this._ctx.beginPath();
-      for (var j = 0; j < this._resizeConstraint.side / 14; j++) {
-        this._ctx.arc(this._resizeConstraint.side / 2 - this._ctx.lineWidth, (this._resizeConstraint.side / 2) - this._ctx.lineWidth - j * 14, 3, 0, Math.PI * 2, true);
-      }
-      this._ctx.fill();
-      this._ctx.beginPath();
-      for (var m = 0; m < this._resizeConstraint.side / 14; m++) {
-        this._ctx.arc((-this._resizeConstraint.side / 2) - this._ctx.lineWidth + m * 14, (this._resizeConstraint.side / 2) - this._ctx.lineWidth, 3, 0, Math.PI * 2, true);
-      }
-      this._ctx.fill();
-      this._ctx.beginPath();
-      for (var n = 0; n < this._resizeConstraint.side / 14; n++) {
-        this._ctx.arc((-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2, (this._resizeConstraint.side / 2) - this._ctx.lineWidth - n * 14, 3, 0, Math.PI * 2, true);
-      }
-      this._ctx.fill();
 
       // Отрисовка черного слоя с прозрачностью 80% вокруг желтой рамки
       this._ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
