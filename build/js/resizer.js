@@ -90,13 +90,6 @@
 
       // Толщина линии.
       this._ctx.lineWidth = 6;
-      // Цвет обводки.
-      this._ctx.strokeStyle = '#ffe753';
-      // Размер штрихов. Первый элемент массива задает длину штриха, второй
-      // расстояние между соседними штрихами.
-      this._ctx.setLineDash([15, 10]);
-      // Смещение первого штриха от начала линии.
-      this._ctx.lineDashOffset = 7;
 
       // Сохранение состояния канваса.
       this._ctx.save();
@@ -113,11 +106,17 @@
 
       // Отрисовка прямоугольника, обозначающего область изображения после
       // кадрирования. Координаты задаются от центра.
-      this._ctx.strokeRect(
-          (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2,
-          (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2,
-          this._resizeConstraint.side - this._ctx.lineWidth / 2,
-          this._resizeConstraint.side - this._ctx.lineWidth / 2);
+      this._ctx.fillStyle = '#ffe753';
+      for (var i = 0; i < this._resizeConstraint.side / 14; i++) {
+        this._ctx.beginPath();
+        this._ctx.arc((-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2 + i * 14, (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2, 3, 0, Math.PI * 2, true);
+        this._ctx.arc(this._resizeConstraint.side / 2 - this._ctx.lineWidth, (this._resizeConstraint.side / 2) - this._ctx.lineWidth - i * 14, 3, 0, Math.PI * 2, true);
+        this._ctx.fill();
+        this._ctx.beginPath();
+        this._ctx.arc((-this._resizeConstraint.side / 2) - this._ctx.lineWidth + i * 14, (this._resizeConstraint.side / 2) - this._ctx.lineWidth, 3, 0, Math.PI * 2, true);
+        this._ctx.arc((-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2, (this._resizeConstraint.side / 2) - this._ctx.lineWidth - i * 14, 3, 0, Math.PI * 2, true);
+        this._ctx.fill();
+      }
 
       // Отрисовка черного слоя с прозрачностью 80% вокруг желтой рамки
       this._ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
