@@ -90,13 +90,6 @@
 
       // Толщина линии.
       this._ctx.lineWidth = 6;
-      // Цвет обводки.
-      this._ctx.strokeStyle = '#ffe753';
-      // Размер штрихов. Первый элемент массива задает длину штриха, второй
-      // расстояние между соседними штрихами.
-      this._ctx.setLineDash([15, 10]);
-      // Смещение первого штриха от начала линии.
-      this._ctx.lineDashOffset = 7;
 
       // Сохранение состояния канваса.
       this._ctx.save();
@@ -113,14 +106,34 @@
 
       // Отрисовка прямоугольника, обозначающего область изображения после
       // кадрирования. Координаты задаются от центра.
-      this._ctx.strokeRect(
-          (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2,
-          (-this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2,
-          this._resizeConstraint.side - this._ctx.lineWidth / 2,
-          this._resizeConstraint.side - this._ctx.lineWidth / 2);
+      this._ctx.strokeStyle = '#ffe753';
+      this._ctx.lineJoin = 'miter';
+      this._ctx.beginPath();
+      this._ctx.moveTo(-this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2);
+      for (var i = 10; i < this._resizeConstraint.side - 10; i = i + 20) {
+        this._ctx.lineTo(-this._resizeConstraint.side / 2 + i, (-this._resizeConstraint.side / 2) - 10);
+        this._ctx.lineTo(-this._resizeConstraint.side / 2 + i + 10, -this._resizeConstraint.side / 2);
+      }
+      this._ctx.lineTo(-this._resizeConstraint.side / 2 + i, -this._resizeConstraint.side / 2 + 10);
+      for (var m = 10; m < this._resizeConstraint.side - 10; m = m + 20) {
+        this._ctx.lineTo(-this._resizeConstraint.side / 2 + i, -this._resizeConstraint.side / 2 + m);
+        this._ctx.lineTo(-this._resizeConstraint.side / 2 + i - 10, -this._resizeConstraint.side / 2 + m + 10);
+      }
+      this._ctx.lineTo(-this._resizeConstraint.side / 2 + i - 20, -this._resizeConstraint.side / 2 + m);
+      for (i = i - 30; i > 10; i = i - 20) {
+        this._ctx.lineTo(-this._resizeConstraint.side / 2 + i, -this._resizeConstraint.side / 2 + m - 10);
+        this._ctx.lineTo(-this._resizeConstraint.side / 2 + i - 10, -this._resizeConstraint.side / 2 + m);
+      }
+      this._ctx.lineTo(-this._resizeConstraint.side / 2 + i - 10, -this._resizeConstraint.side / 2 + m - 20);
+      for (m = m - 30; m > 10; m = m - 20) {
+        this._ctx.lineTo(-this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2 + m);
+        this._ctx.lineTo(-this._resizeConstraint.side / 2 - 10, -this._resizeConstraint.side / 2 + m - 10);
+      }
+      this._ctx.lineTo(-this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2);
+      this._ctx.stroke();
 
       // Отрисовка черного слоя с прозрачностью 80% вокруг желтой рамки
-      this._ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+      /*this._ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
       this._ctx.beginPath();
       this._ctx.moveTo(-this._image.naturalWidth / 2, this._image.naturalHeight / 2);
       this._ctx.lineTo(this._image.naturalWidth / 2, this._image.naturalHeight / 2);
@@ -130,14 +143,14 @@
       this._ctx.lineTo(this._resizeConstraint.side / 2 - this._ctx.lineWidth / 2, -(this._resizeConstraint.side / 2) - this._ctx.lineWidth);
       this._ctx.lineTo(this._resizeConstraint.side / 2 - this._ctx.lineWidth / 2, (this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2);
       this._ctx.lineTo((-this._resizeConstraint.side / 2) - this._ctx.lineWidth, (this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2);
-      this._ctx.fill('evenodd');
+      this._ctx.fill('evenodd');*/
 
       //Вывод размера кадрируемого изображения
       this._ctx.font = '18px serif';
       this._ctx.fillStyle = 'white';
       this._ctx.textAlign = 'center';
       this._ctx.fillStyle = 'rgba(255, 255, 255)';
-      this._ctx.fillText(this._image.naturalWidth + 'x' + this._image.naturalHeight, 0, (-this._resizeConstraint.side / 2) - this._ctx.lineWidth - 10);
+      this._ctx.fillText(this._image.naturalWidth + 'x' + this._image.naturalHeight, 0, (-this._resizeConstraint.side / 2) - this._ctx.lineWidth - 20);
 
       // Восстановление состояния канваса, которое было до вызова ctx.save
       // и последующего изменения системы координат. Нужно для того, чтобы
