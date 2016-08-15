@@ -110,31 +110,26 @@
       this._ctx.lineJoin = 'miter';
       this._ctx.beginPath();
       this._ctx.moveTo(-this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2);
-      for (var i = 10; i < this._resizeConstraint.side; i = i + 20) {
-        this._ctx.lineTo((-this._resizeConstraint.side / 2) + i, (-this._resizeConstraint.side / 2) - 10);
-        this._ctx.lineTo((-this._resizeConstraint.side / 2) + i + 10, -this._resizeConstraint.side / 2);
+      for (var i = 10; i < this._resizeConstraint.side - 10; i = i + 20) {
+        this._ctx.lineTo(-this._resizeConstraint.side / 2 + i, (-this._resizeConstraint.side / 2) - 10);
+        this._ctx.lineTo(-this._resizeConstraint.side / 2 + i + 10, -this._resizeConstraint.side / 2);
       }
-      this._ctx.stroke();
-      this._ctx.beginPath();
-      this._ctx.moveTo(-this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2);
-      for (var j = 10; j < this._resizeConstraint.side; j = j + 20) {
-        this._ctx.lineTo(-this._resizeConstraint.side / 2 - 10, -this._resizeConstraint.side / 2 + j);
-        this._ctx.lineTo(-this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2 + j + 10);
+      this._ctx.lineTo(-this._resizeConstraint.side / 2 + i, -this._resizeConstraint.side / 2 + 10);
+      for (var m = 10; m < this._resizeConstraint.side - 10; m = m + 20) {
+        this._ctx.lineTo(-this._resizeConstraint.side / 2 + i, -this._resizeConstraint.side / 2 + m);
+        this._ctx.lineTo(-this._resizeConstraint.side / 2 + i - 10, -this._resizeConstraint.side / 2 + m + 10);
       }
-      this._ctx.stroke();
-      this._ctx.beginPath();
-      this._ctx.moveTo(this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2 - 5);
-      for (var m = 10; m < this._resizeConstraint.side; m = m + 20) {
-        this._ctx.lineTo(this._resizeConstraint.side / 2 + 10, -this._resizeConstraint.side / 2 - 5 + m);
-        this._ctx.lineTo(this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2 + m - 5 + 10);
+      this._ctx.lineTo(-this._resizeConstraint.side / 2 + i - 20, -this._resizeConstraint.side / 2 + m);
+      for (i = i - 30; i > 10; i = i - 20) {
+        this._ctx.lineTo(-this._resizeConstraint.side / 2 + i, -this._resizeConstraint.side / 2 + m - 10);
+        this._ctx.lineTo(-this._resizeConstraint.side / 2 + i - 10, -this._resizeConstraint.side / 2 + m);
       }
-      this._ctx.stroke();
-      this._ctx.beginPath();
-      this._ctx.moveTo(this._resizeConstraint.side / 2 - this._ctx.lineWidth / 2, this._resizeConstraint.side / 2);
-      for (var n = 10; n < this._resizeConstraint.side; n = n + 20) {
-        this._ctx.lineTo(this._resizeConstraint.side / 2 - n, this._resizeConstraint.side / 2 + 10);
-        this._ctx.lineTo(this._resizeConstraint.side / 2 - n - 10, this._resizeConstraint.side / 2);
+      this._ctx.lineTo(-this._resizeConstraint.side / 2 + i - 10, -this._resizeConstraint.side / 2 + m - 20);
+      for (m = m - 30; m > 10; m = m - 20) {
+        this._ctx.lineTo(-this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2 + m);
+        this._ctx.lineTo(-this._resizeConstraint.side / 2 - 10, -this._resizeConstraint.side / 2 + m - 10);
       }
+      this._ctx.lineTo(-this._resizeConstraint.side / 2, -this._resizeConstraint.side / 2);
       this._ctx.stroke();
 
       // Отрисовка черного слоя с прозрачностью 80% вокруг желтой рамки
